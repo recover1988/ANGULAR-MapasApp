@@ -2,7 +2,32 @@
 
 ## Mapbox
 
-Esta aplicacion usa la API de `https://www.mapbox.com/`
+Esta aplicacion usa la API de `https://www.mapbox.com/`.
+
+```
+Install the npm package:
+
+npm install --save mapbox-gl
+
+Include the CSS file in the <head> of your HTML file:
+
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' rel='stylesheet' />
+
+Include the following code in your JavaScript file:
+
+
+import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiZXJpY2RlbmlzLTE5ODgiLCJhIjoiY2xla2VpYTV5MGpqbDN3bzZoYTJjaTJjNiJ9.8MKm8rvuDojCSKU1y9RPHQ';
+const map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v12', // style URL
+    center: [-74.5, 40], // starting position [lng, lat]
+    zoom: 9, // starting zoom
+});
+
+
+```
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.4.
 
