@@ -4,21 +4,24 @@
 
 Esta aplicacion usa la API de `https://www.mapbox.com/`.
 
-```
 Install the npm package:
 
+```
 npm install --save mapbox-gl
+```
 
 Include the CSS file in the <head> of your HTML file:
 
+```
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' rel='stylesheet' />
+```
 
 Include the following code in your JavaScript file:
 
-
+```
 import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiZXJpY2RlbmlzLTE5ODgiLCJhIjoiY2xla2VpYTV5MGpqbDN3bzZoYTJjaTJjNiJ9.8MKm8rvuDojCSKU1y9RPHQ';
+mapboxgl.accessToken = 'pk.eyJ1IjoiZXJpY2RlbmlzLTE5ODgiLCJ';<-- token de la pag
 const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v12', // style URL
@@ -28,6 +31,83 @@ const map = new mapboxgl.Map({
 
 
 ```
+
+## Diferencias con GoogleMap
+
+La posicion del GoogleMap se fija con un array de latitud y longitud. Mientras que en Mapbos se fija con longitud y latitud.
+
+## AccesToken
+
+```
+// app/component.ts
+
+import { Component, OnInit } from '@angular/core';
+import * as mapboxgl from 'mapbox-gl';
+import { environment } from 'src/environments/environment';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+  ngOnInit(): void {
+
+    (mapboxgl as any).accessToken = environment.mapboxToken;
+
+
+  }
+  title = 'mapasApp';
+}
+
+```
+
+El accessToken se coloca en el app.component.ts para que se cargue y este disponible de manera global.
+
+## Cargar Mapa
+
+```
+//component
+
+import { Component, OnInit } from '@angular/core';
+import * as mapboxgl from 'mapbox-gl';
+
+@Component({
+  selector: 'app-full-screen',
+  templateUrl: './full-screen.component.html',
+  styles: [`
+  #mapa{
+    width:100%;
+    height:100%;
+  }
+  `
+  ]
+})
+export class FullScreenComponent implements OnInit {
+  ngOnInit(): void {
+
+    const map = new mapboxgl.Map({
+      container: 'mapa', // container ID
+      style: 'mapbox://styles/mapbox/streets-v12', // style URL
+      center: [-64.18487550491221, -31.391669631352066], // starting position [lng, lat]
+      zoom: 17, // starting zoom
+
+    });
+    // map.setLight({
+    //   "anchor": "viewport",
+    //   "color": "blue",
+    //   "intensity": 0.5
+    // });
+
+  }
+
+}
+```
+
+Una vez cargado el accessToken de manera global se puede llamar al mapa con el `new mapboxgl.Map({})`.
+Las configuraciones opcionales se puede agregar al `map`.
+
+---
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.4.
 

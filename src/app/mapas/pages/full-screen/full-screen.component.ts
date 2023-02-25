@@ -20,6 +20,7 @@ export class FullScreenComponent implements OnInit {
       style: 'mapbox://styles/mapbox/streets-v12', // style URL
       center: [-64.18487550491221, -31.391669631352066], // starting position [lng, lat]
       zoom: 17, // starting zoom
+
     });
     // map.setLight({
     //   "anchor": "viewport",
