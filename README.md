@@ -107,6 +107,34 @@ export class FullScreenComponent implements OnInit {
 Una vez cargado el accessToken de manera global se puede llamar al mapa con el `new mapboxgl.Map({})`.
 Las configuraciones opcionales se puede agregar al `map`.
 
+## AfterViewInit
+
+En vez de usar un id en los div, para renderizar el mapa, es mejor usar referencias asi angular crea dinamicamente los div y nosotros solo manejamos su referencia. De esta manera podremos manejar varios mapas a la vez y no tener problemas de collision de id.
+
+```
+export class ZoomRangeComponent implements AfterViewInit {
+
+  mapa!: mapboxgl.Map;
+  @ViewChild('mapa') divMapa!: ElementRef;
+
+  ngAfterViewInit(): void {
+    this.mapa = new mapboxgl.Map({
+      container: this.divMapa.nativeElement, // container ID
+      style: 'mapbox://styles/mapbox/streets-v12', // style URL
+      center: [-64.18487550491221, -31.391669631352066], // starting position [lng, lat]
+      zoom: 17, // starting zoom
+    });
+  }
+  zoomIn() {
+    this.mapa.zoomOut();
+  };
+  zoomOut() {
+    this.mapa.zoomIn();
+  };
+}
+
+```
+
 ---
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.4.
