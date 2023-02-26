@@ -135,6 +135,41 @@ export class ZoomRangeComponent implements AfterViewInit {
 
 ```
 
+## EventLister
+
+```
+export class ZoomRangeComponent implements AfterViewInit {
+
+  @ViewChild('mapa') divMapa!: ElementRef;
+  mapa!: mapboxgl.Map;
+  zoomLevel: number = 10;
+
+  ngAfterViewInit(): void {
+    this.mapa = new mapboxgl.Map({
+      container: this.divMapa.nativeElement, // container ID
+      style: 'mapbox://styles/mapbox/streets-v12', // style URL
+      center: [-64.18487550491221, -31.391669631352066], // starting position [lng, lat]
+      zoom: 17, // starting zoom
+    });
+
+    this.mapa.on('zoom', (ev) => {
+      this.zoomLevel = this.mapa.getZoom();
+    })
+
+
+
+  }
+  zoomIn() {
+    this.mapa.zoomOut();
+  };
+  zoomOut() {
+    this.mapa.zoomIn();
+  };
+}
+```
+
+Con el metodo `on` podemos escuchar los eventos de `this.mapa`, en este caso el `zoom` y con una funcion flecha podemos obtener el nivel dinamico del zoom hasta que para la animacion.
+
 ---
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.4.
