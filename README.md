@@ -251,6 +251,23 @@ Para agregar marcadores simplemente hay qu crearse un elemnto html que contenga 
 Este metodo genera marcadors con colores aleatorios y los agrega en las coordenadas que se especifiquen en `setLngLat()`.
 Se generan en el mapa por el `addTo()` el cual requiere la referencia del mapa.
 
+## ngStyle
+
+```
+  <li
+    class="list-group-item"
+    (click)="irMarcador()"
+    *ngFor="let marcador of marcadores; index as i"
+    [ngStyle]="{
+      'background-color': marcador.color
+    }"
+  >
+    Marker {{ i + 1 }}
+  </li>
+```
+
+Al Elemento se puede enviar un objeto con las propiedades CSS.
+
 ---
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.4.
