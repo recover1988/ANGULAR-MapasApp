@@ -2,7 +2,9 @@
 
 <div class="row">
   <div class="col-12 bg-dark">
-    <label class="form-label text-white">Zoom: 16 - Lng.Lat: [123,123]</label>
+    <label class="form-label text-white"
+      >Zoom: {{ zoomLevel | number : "2.0-2" }} - Lng.Lat: [123,123]</label
+    >
     <input type="range" class="form-range" data-bs-theme="dark" />
     <div class="col-12">
       <div class="btn btn-secondary" (click)="zoomOut()">-</div>
