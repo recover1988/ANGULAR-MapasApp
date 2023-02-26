@@ -3,7 +3,9 @@
 <div class="row">
   <div class="col-12 bg-dark">
     <label class="form-label text-white"
-      >Zoom: {{ zoomLevel | number : "2.0-2" }} - Lng.Lat: [123,123]</label
+      >Zoom: {{ zoomLevel | number : "2.0-2" }} - Lng.Lat: [{{
+        center[0] | number : "2.4-4"
+      }},{{ center[1] | number : "2.4-4" }}]</label
     >
     <input
       type="range"

@@ -170,6 +170,55 @@ export class ZoomRangeComponent implements AfterViewInit {
 
 Con el metodo `on` podemos escuchar los eventos de `this.mapa`, en este caso el `zoom` y con una funcion flecha podemos obtener el nivel dinamico del zoom hasta que para la animacion.
 
+## Referencia Local
+
+```
+    <input
+      type="range"
+      class="form-range"
+      data-bs-theme="dark"
+      [value]="zoomLevel"
+      min="1"
+      max="18"
+      #zoomInput
+      (input)="zoomCambio(zoomInput.value)"
+    />
+```
+
+Se puede mandar valor por referencia local a travez del metodo `.value` de la referencia
+
+## Obtener centro del mapa
+
+```
+  ngAfterViewInit(): void {
+
+    ......
+
+    // Movimiento del center del mapa
+    this.mapa.on('move', (event) => {
+      const target = event.target;
+      const { lng, lat } = target.getCenter();
+      this.center = [lng, lat];
+    })
+
+    ......
+    }
+```
+
+## Regla de oro
+
+Cuando se use un EventListener(on, delay, etc), siempre se tiene que destruir, para no tener eventos corriendo en segudno plano y se acumulen.
+
+```
+  ngOnDestroy(): void {
+    this.mapa.off('zoom', () => { });
+    this.mapa.off('zoomend', () => { });
+    this.mapa.off('move', () => { });
+  }
+```
+
+Los eventos `on` se destruyen con el metodo `off`.
+
 ---
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.4.
