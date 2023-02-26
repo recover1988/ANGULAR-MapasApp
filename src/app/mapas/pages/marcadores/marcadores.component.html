@@ -4,11 +4,11 @@
   </li>
   <li
     class="list-group-item"
-    (click)="irMarcador()"
     *ngFor="let marcador of marcadores; index as i"
     [ngStyle]="{
       'background-color': marcador.color
     }"
+    (click)="irMarcador(marcador.marker)"
   >
     Marker {{ i + 1 }}
   </li>

@@ -61,9 +61,20 @@ export class MarcadoresComponent implements AfterViewInit {
       marker: nuevoMarcador
     });
   };
-  irMarcador() {
-    // this.mapa.flyTo();
+  irMarcador(marcador: mapboxgl.Marker) {
+    // const { lng, lat } = marcador.getLngLat();
+    this.mapa.flyTo({
+      center: marcador.getLngLat()
+    });
   };
+//guardar en el localStorage
+
+guardarMarcadoresLocalStorage(){
+
+}
+
+leerLocalStorage(){}
+
 }
 
     // const markerHtml: HTMLElement = document.createElement('div');
