@@ -8,7 +8,7 @@
     [ngStyle]="{
       'background-color': marcador.color
     }"
-    (click)="irMarcador(marcador.marker)"
+    (click)="irMarcador(marcador.marker!)"
   >
     Marker {{ i + 1 }}
   </li>
