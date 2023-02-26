@@ -11,15 +11,15 @@ import * as mapboxgl from 'mapbox-gl';
     height:100%;
   }
 
-  .row{
-    background-color: white;
+  .list-group{
     position:fixed;
-    bottom: 50px;
-    left:50px;
-    padding:10px;
-    border-radius:5px;
-    width:400px;
+    top:20px;
+    right:20px;
     z-index:100;
+  }
+
+  li{
+    cursor:pointer;
   }
   `
   ]
@@ -39,6 +39,22 @@ export class MarcadoresComponent implements AfterViewInit {
       zoom: 17, // starting zoom
     });
 
+  }
+
+  agregarMarcador() {
+    const color = "#xxxxxx".replace(/x/g, y => (Math.random() * 16 | 0).toString(16));
+    const nuevoMarcador = new mapboxgl.Marker({
+      draggable: true,
+      color: color,
+    })
+      .setLngLat(this.center)
+      .addTo(this.mapa);
+  };
+  irMarcador() {
+
+  };
+}
+
     // const markerHtml: HTMLElement = document.createElement('div');
     // markerHtml.innerHTML = 'Hola Mundo'
 
@@ -48,10 +64,6 @@ export class MarcadoresComponent implements AfterViewInit {
     //   .setLngLat(this.center)
     //   .addTo(this.mapa);
 
-    const marker = new mapboxgl.Marker()
-      .setLngLat(this.center)
-      .addTo(this.mapa);
-
-
-  }
-}
+    // const marker = new mapboxgl.Marker()
+    //   .setLngLat(this.center)
+    //   .addTo(this.mapa);
