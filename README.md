@@ -219,6 +219,21 @@ Cuando se use un EventListener(on, delay, etc), siempre se tiene que destruir, p
 
 Los eventos `on` se destruyen con el metodo `off`.
 
+## Marcadores Personalizados
+
+Para agregar marcadores simplemente hay qu crearse un elemnto html que contenga algun elemento que pueda servir como marcador como imagenes, palabras,etc.
+
+```
+    const markerHtml: HTMLElement = document.createElement('div');
+    markerHtml.innerHTML = 'Hola Mundo'
+
+    const marker = new mapboxgl.Marker({
+      element: markerHtml
+    })
+      .setLngLat(this.center)
+      .addTo(this.mapa);
+```
+
 ---
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.4.

@@ -36,7 +36,7 @@ export class ZoomRangeComponent implements AfterViewInit, OnDestroy {
       container: this.divMapa.nativeElement, // container ID
       style: 'mapbox://styles/mapbox/streets-v12', // style URL
       center: this.center, // starting position [lng, lat]
-      zoom: 17, // starting zoom
+      zoom: 10, // starting zoom
     });
 
     // obtener el zoom del mapa
