@@ -234,6 +234,23 @@ Para agregar marcadores simplemente hay qu crearse un elemnto html que contenga 
       .addTo(this.mapa);
 ```
 
+## Añadir marcadores de manera dinamica
+
+```
+  agregarMarcador() {
+    const color = "#xxxxxx".replace(/x/g, y => (Math.random() * 16 | 0).toString(16));
+    const nuevoMarcador = new mapboxgl.Marker({
+      draggable: true,
+      color: color,
+    })
+      .setLngLat(this.center)
+      .addTo(this.mapa);
+  };
+```
+
+Este metodo genera marcadors con colores aleatorios y los agrega en las coordenadas que se especifiquen en `setLngLat()`.
+Se generan en el mapa por el `addTo()` el cual requiere la referencia del mapa.
+
 ---
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.4.
